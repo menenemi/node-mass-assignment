@@ -17,7 +17,7 @@ Initiate the MongoDB replica set.（init.jsで自動化できなかったので�
 ```bash
 docker exec -it prisma-mongodb mongosh --eval 'rs.initiate({_id:"rs0", members: [{_id:0, host: "127.0.0.1:27017"}]})'
 ```
-この状態でもう一度動かすとちゃんとmongoDBが動く。
+この状態でもう一度動かすとちゃんと動く。
 ```bash
 docker-compose up
 ```
