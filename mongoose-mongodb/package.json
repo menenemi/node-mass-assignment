@@ -1,0 +1,16 @@
+{
+  "name": "mongoose-mongodb-node-mass-assignment",
+  "module": "server.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4",
+    "underscore": "^1.13.6"
+  }
+}
