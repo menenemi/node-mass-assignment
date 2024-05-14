@@ -1,6 +1,7 @@
 import express from "express";
 import User from "./models/newUser";
 import _ from "underscore";
+import UserDTO from "./models/UserDTO";
 
 const app = express();
 const port = 3000;
@@ -12,7 +13,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-    const user = new User(req.body);
+    const existingUser = await User.find({ email: req.body.email });
+    if (existingUser.length > 0) {
+        // when email already exists
+        return res.status(403).send("User registration failed");
+    }
+
+    //const user = new User(req.body);
+    const user = new User(new UserDTO(req.body));
 
     try {
         await user.save();
