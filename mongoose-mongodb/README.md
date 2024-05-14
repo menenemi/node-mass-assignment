@@ -49,7 +49,27 @@ const userSchema = new Schema({
 });
 ```
 ### 方法 2
-underscore libraryを用いてPOST requestで受け付けるfieldを制限する
+underscore libraryを用いてPOST requestで受け付けるfieldを制限する（allowlistの使用）
 ```js:server.js
 const user = new User(_.pick(req.body, "first_name", "last_name", "email", "password"));
+```
+
+### 方法 3
+DTO(Data Transfer Object)を用いてPOST requestで受け付けるfieldを制限する
+```js:server.js
+import UserDTO from "./models/UserDTO";
+...
+const user = new User(new UserDTO(req.body));
+```
+```js:UserDTO.js
+class UserDTO {
+	constructor({ first_name, last_name, email, password }) {
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email = email;
+		this.password = password;
+		this.isAdmin = false;
+	}
+}
+export default UserDTO;
 ```
